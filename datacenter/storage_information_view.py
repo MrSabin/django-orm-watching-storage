@@ -1,5 +1,4 @@
-from datacenter.models import Passcard
-from datacenter.models import Visit
+from datacenter.models import Visit, is_visit_long
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -23,10 +22,12 @@ def storage_information_view(request):
     for visit in opened_visits:
         time_passed = get_duration(visit.entered_at)
         time_entered = timezone.localtime(visit.entered_at)
+        flag = is_visit_long(visit)
         visit_details = {
             'who_entered': f'{visit.passcard}',
             'entered_at': f'{time_entered}',
-            'duration': f'{time_passed}'}
+            'duration': f'{time_passed}',
+            'flag': f'{flag}'}
         non_closed_visits.append(visit_details)
     context = {
         'non_closed_visits': non_closed_visits,  # не закрытые посещения
