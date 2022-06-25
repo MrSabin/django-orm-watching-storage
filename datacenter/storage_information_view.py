@@ -3,9 +3,13 @@ from django.shortcuts import render
 from django.utils import timezone
 
 
-def get_duration(time):
-    duration = timezone.localtime() - timezone.localtime(time)
-    return format_duration(duration)
+def get_duration(entered, leaved=False):
+    if leaved:
+        duration = timezone.localtime(leaved) - timezone.localtime(entered)
+        return format_duration(duration)
+    else:
+        duration = timezone.localtime() - timezone.localtime(entered)
+        return format_duration(duration)
 
 
 def format_duration(duration):
