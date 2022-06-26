@@ -1,7 +1,7 @@
 from datacenter.models import Passcard
 from datacenter.models import is_visit_long
 from datacenter.models import Visit
-from datacenter.storage_information_view import get_duration, format_duration
+from datacenter.time_processing import get_duration, format_duration
 from django.shortcuts import render
 from django.utils import timezone
 
