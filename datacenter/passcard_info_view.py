@@ -9,7 +9,7 @@ from django.utils import timezone
 def passcard_info_view(request, passcode):
     passcard = Passcard.objects.get(passcode=passcode)
     visits = Visit.objects.filter(passcard=passcard)
-    this_passcard_visits = []
+    serialized_visits = []
 
     for visit in visits:
         time_passed = get_duration(visit.entered_at, visit.leaved_at)
@@ -20,10 +20,10 @@ def passcard_info_view(request, passcode):
             'duration': f'{time_passed}',
             'is_strange': f'{flag}'
         }
-        this_passcard_visits.append(visit_details)
+        serialized_visits.append(visit_details)
 
     context = {
         'passcard': passcard,
-        'this_passcard_visits': this_passcard_visits
+        'this_passcard_visits': serialized_visits
     }
     return render(request, 'passcard_info.html', context)
