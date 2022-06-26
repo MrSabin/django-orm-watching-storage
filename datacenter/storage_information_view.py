@@ -20,7 +20,6 @@ def format_duration(duration):
 
 
 def storage_information_view(request):
-    # Программируем здесь
     opened_visits = Visit.objects.filter(leaved_at=None)
     non_closed_visits = []
     for visit in opened_visits:
@@ -34,6 +33,6 @@ def storage_information_view(request):
             'flag': f'{flag}'}
         non_closed_visits.append(visit_details)
     context = {
-        'non_closed_visits': non_closed_visits,  # не закрытые посещения
+        'non_closed_visits': non_closed_visits,
     }
     return render(request, 'storage_information.html', context)
