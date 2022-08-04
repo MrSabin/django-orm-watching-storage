@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 def storage_information_view(request):
-    opened_visits = Visit.objects.filter(leaved_at=None)
+    opened_visits = Visit.objects.filter(leaved_at__isnull=True)
     serialized_visits = []
     for visit in opened_visits:
         time_passed = get_duration(visit.entered_at)
