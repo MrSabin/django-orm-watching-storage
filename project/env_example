@@ -5,6 +5,7 @@ DB_NAME="db_name"
 DB_USER="db_user_name"
 DB_PASSWORD="db_user_password"
 
-SECRET_KEY="db_secret_key"
+SECRET_KEY="secret_key"
+ALLOWED_HOSTS=[]
 
 DEBUG=False
